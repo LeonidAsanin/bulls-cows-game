@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Bulls and Cows Game</title>
+</head>
+<body>
+  <header>
+      <h1>Bulls and Cows Game</h1>
+      <p>
+          <b>Description:</b>
+          The computer guesses a 4-digit number. The digits of the secret number are not repeated. <br/>
+          Your task is to guess the that number. You have an unlimited number of attempts. <br/>
+          In each attempt, you give the computer your version of the number. <br/>
+          The computer reports how many digits are correctly guessed (bull) <br/>
+          and how many digits are guessed without regard to position (cow). <br/>
+          Based on the answer of the computer, you have to guess the number in several steps..
+      </p>
+      <p>
+          <b>Statistics:</b>
+          Average number of attempts to win -
+          <span th:text="${statistics}">20</span>
+      </p>
+      <hr/>
+  </header>
+  <main>
+      Enter your number. Try to guess!
+      <div id="input">
+          <form>
+              <p>
+                  <span th:text="${userNumber}">1 2 3 4</span>
+              </p>
+              <p>
+                  <input type="submit" value="1" th:formaction="${/enter/1}">
+                  <input type="submit" value="2" th:formaction="${/enter/2}">
+                  <input type="submit" value="3" th:formaction="${/enter/3}">
+                  <br>
+                  <input type="submit" value="4" th:formaction="${/enter/4}">
+                  <input type="submit" value="5" th:formaction="${/enter/5}">
+                  <input type="submit" value="6" th:formaction="${/enter/6}">
+                  <br>
+                  <input type="submit" value="7" th:formaction="${/enter/7}">
+                  <input type="submit" value="8" th:formaction="${/enter/8}">
+                  <input type="submit" value="9" th:formaction="${/enter/9}">
+                  <br>
+                  <input type="submit" value="0" th:formaction="${/enter/0}">
+                  <input type="submit" value="Delete" th:formaction="${/delete}">
+                  <br>
+              </p>
+              <p>
+                  <input type="submit" th:formaction="@{/try}">
+              </p>
+          </form>
+      </div>
+      <div id="error">
+          <span th:text="${error}" style="color:red">Error placeholder</span>
+      </div>
+      <div id="result">
+          <p>
+              <span th:text>Result placeholder</span>
+          </p>
+      </div>
+  </main>
+  <footer>
+      <hr/>
+      <p>
+          Application was developed by Leonid Asanin.
+      </p>
+      <address>
+          Contact information:<br/>
+          Email: <a href="mailto:l.asanin@mail.ru">l.asanin@mail.ru</a><br/>
+          GitHub: <a href="https://github.com/LeonidAsanin" target="_blank">github.com/LeonidAsanin</a>
+      </address>
+  </footer>
+</body>
+</html>
