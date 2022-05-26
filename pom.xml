@@ -15,7 +15,7 @@
 	<name>Bulls and Cows Game</name>
 	<description>Test project for Open-Code</description>
 	<properties>
-		<java.version>17</java.version>
+		<java.version>8</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
