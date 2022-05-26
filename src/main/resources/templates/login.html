@@ -23,7 +23,7 @@
             <button type="submit">Log in</button>
         </fieldset>
 
-        <div class="errorMessage" th:if="${error} != null" th:text="${error}">
+        <div class="errorMessage" th:if="${error} != null" th:text="${error}" style="color:red">
             Login Error
         </div>
     </form>

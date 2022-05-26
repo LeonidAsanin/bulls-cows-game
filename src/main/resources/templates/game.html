@@ -26,29 +26,29 @@
   <main>
       Enter your number. Try to guess!
       <div id="input">
-          <form>
+          <form method="post" th:action="@{/game/try}">
               <p>
                   <span th:text="${userNumber}">1 2 3 4</span>
               </p>
               <p>
-                  <input type="submit" value="1" th:formaction="@{/enter/1}">
-                  <input type="submit" value="2" th:formaction="@{/enter/2}">
-                  <input type="submit" value="3" th:formaction="@{/enter/3}">
+                  <input type="submit" value="1" th:formaction="@{/game/enter/1}">
+                  <input type="submit" value="2" th:formaction="@{/game/enter/2}">
+                  <input type="submit" value="3" th:formaction="@{/game/enter/3}">
                   <br>
-                  <input type="submit" value="4" th:formaction="@{/enter/4}">
-                  <input type="submit" value="5" th:formaction="@{/enter/5}">
-                  <input type="submit" value="6" th:formaction="@{/enter/6}">
+                  <input type="submit" value="4" th:formaction="@{/game/enter/4}">
+                  <input type="submit" value="5" th:formaction="@{/game/enter/5}">
+                  <input type="submit" value="6" th:formaction="@{/game/enter/6}">
                   <br>
-                  <input type="submit" value="7" th:formaction="@{/enter/7}">
-                  <input type="submit" value="8" th:formaction="@{/enter/8}">
-                  <input type="submit" value="9" th:formaction="@{/enter/9}">
+                  <input type="submit" value="7" th:formaction="@{/game/enter/7}">
+                  <input type="submit" value="8" th:formaction="@{/game/enter/8}">
+                  <input type="submit" value="9" th:formaction="@{/game/enter/9}">
                   <br>
-                  <input type="submit" value="0" th:formaction="@{/enter/0}">
-                  <input type="submit" value="Delete" th:formaction="@{/delete}">
+                  <input type="submit" value="0" th:formaction="@{/game/enter/0}">
+                  <input type="submit" value="Delete" th:formaction="@{/game/delete}">
                   <br>
               </p>
               <p>
-                  <input type="submit" th:formaction="@{/try}" value="Try">
+                  <input type="submit" value="Try">
               </p>
           </form>
       </div>

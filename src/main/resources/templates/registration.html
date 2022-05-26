@@ -27,7 +27,7 @@
             <button type="submit">Register</button>
         </fieldset>
 
-        <div class="errorMessage" th:if="${error} != null" th:text="${error}">
+        <div class="errorMessage" th:if="${error} != null" th:text="${error}" style="color:red">
             Registration Error
         </div>
     </form>

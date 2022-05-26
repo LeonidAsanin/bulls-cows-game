@@ -33,12 +33,12 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
                 .authorizeRequests()
-                .antMatchers("/game").authenticated()
-                .antMatchers("/**").permitAll()
+                    .antMatchers("/login", "/register").permitAll()
+                    .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/login")
-                .defaultSuccessUrl("/game")
+                    .loginPage("/login")
+                    .defaultSuccessUrl("/game")
                 .and()
                 .build();
     }
