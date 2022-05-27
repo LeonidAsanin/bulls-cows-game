@@ -40,6 +40,8 @@ public class SecurityConfig {
                     .loginPage("/login")
                     .defaultSuccessUrl("/game")
                 .and()
+                .logout()
+                .and()
                 .build();
     }
 }

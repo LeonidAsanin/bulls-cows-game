@@ -19,4 +19,8 @@ public class UserService {
     public void registerNewUser(User user) {
         userRepository.save(user);
     }
+
+    public double getAverageAttemptNumberToWinByUserId(long userId) {
+        return userRepository.getAverageAttemptNumberToWinByUserId(userId);
+    }
 }

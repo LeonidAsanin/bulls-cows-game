@@ -22,6 +22,12 @@ public class User implements UserDetails {
     @Column(name = "password", nullable = false)
     private String password;
 
+    @Column(name = "gameCount")
+    private int gameCount;
+
+    @Column(name = "averageAttemptNumberToWin")
+    private double averageAttemptNumberToWin;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER"));
@@ -71,5 +77,21 @@ public class User implements UserDetails {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public int getGameCount() {
+        return gameCount;
+    }
+
+    public void setGameCount(int gameCount) {
+        this.gameCount = gameCount;
+    }
+
+    public double getAverageAttemptNumberToWin() {
+        return averageAttemptNumberToWin;
+    }
+
+    public void setAverageAttemptNumberToWin(int averageAttemptNumberToWin) {
+        this.averageAttemptNumberToWin = averageAttemptNumberToWin;
     }
 }

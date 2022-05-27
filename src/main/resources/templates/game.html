@@ -7,6 +7,11 @@
 <body>
   <header>
       <h1>Bulls and Cows Game</h1>
+      <nav>
+          <form method="post" th:action="@{/logout}">
+              <button type="submit">Log out</button>
+          </form>
+      </nav>
       <p>
           <b>Description:</b>
           The computer guesses a 4-digit number. The digits of the secret number are not repeated. <br/>
@@ -19,7 +24,7 @@
       <p>
           <b>Statistics:</b>
           Average number of attempts to win -
-          <span th:text="${statistics}">20</span>
+          <span th:text="${#numbers.formatDecimal(averageAttemptNumberToWin, 1, 2)}">0</span>
       </p>
       <hr/>
   </header>
@@ -28,7 +33,7 @@
       <div id="input">
           <form method="post" th:action="@{/game/try}">
               <p>
-                  <span th:text="${userNumber}">1 2 3 4</span>
+                  <input disabled th:value="${userNumber}">
               </p>
               <p>
                   <input type="submit" value="1" th:formaction="@{/game/enter/1}">
@@ -57,7 +62,7 @@
       </div>
       <div id="result">
           <p>
-              <span th:text>Result placeholder</span>
+              <span th:utext="${result}">Result placeholder</span>
           </p>
       </div>
   </main>
