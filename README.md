@@ -7,7 +7,7 @@
 * [Developer](#Developer)
 
 ## General
----
+Classic "Bulls and Cows" game implemented as web-application.
 
 ## Technologies
 ### Main part of the application
