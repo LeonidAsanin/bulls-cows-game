@@ -10,6 +10,6 @@ public class ExceptionHandlerController {
     @ExceptionHandler(NotEnoughDigitsException.class)
     public String handleNotEnoughDigitsException(RedirectAttributes redirectAttributes) {
         redirectAttributes.addFlashAttribute("error", "Not Enough Digits (Must be 4)");
-        return "redirect:/game";
+        return "redirect:/";
     }
 }

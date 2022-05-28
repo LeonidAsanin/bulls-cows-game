@@ -3,9 +3,12 @@ package org.leonidasanin.bullscowsgame.service;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.leonidasanin.bullscowsgame.controller.AuthenticationForTestOfControllers;
+import org.leonidasanin.bullscowsgame.entity.User;
 import org.leonidasanin.bullscowsgame.repository.UserRepository;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -18,6 +21,14 @@ class GameServiceTest {
 
     @BeforeEach
     void setUp() {
+        User user = new User();
+        user.setId(0L);
+        user.setUsername("username");
+        user.setPassword("password");
+
+        AuthenticationForTestOfControllers authentication = new AuthenticationForTestOfControllers(user);
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+
         gameService = new GameService(userRepositoryMock);
     }
 

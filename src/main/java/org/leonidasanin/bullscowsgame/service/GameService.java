@@ -22,6 +22,7 @@ public class GameService {
 
     private int bulls;
     private int cows;
+    private String result;
 
     public GameService(UserRepository userRepository) {
         this.userRepository = userRepository;
@@ -60,15 +61,7 @@ public class GameService {
         );
     }
 
-    public void addDigit(int digit) {
-        if (CURRENT_NUMBER.size() < 4 && !CURRENT_NUMBER.contains(digit)) CURRENT_NUMBER.addLast(digit);
-    }
-
-    public void deleteDigit() {
-        CURRENT_NUMBER.pollLast();
-    }
-
-    public GameResult tryNumber() throws NotEnoughDigitsException {
+    private GameResult calculateResult() throws NotEnoughDigitsException {
         if (CURRENT_NUMBER.size() < 4) throw new NotEnoughDigitsException();
 
         for (int i = 0; i < 4; i++) {
@@ -111,9 +104,47 @@ public class GameService {
         return gameResult;
     }
 
+    public void addDigit(int digit) {
+        if (CURRENT_NUMBER.size() < 4 && !CURRENT_NUMBER.contains(digit)) CURRENT_NUMBER.addLast(digit);
+    }
+
+    public void deleteDigit() {
+        CURRENT_NUMBER.pollLast();
+    }
+
     public String getNumber() {
         return CURRENT_NUMBER.stream()
                 .map(String::valueOf)
                 .collect(Collectors.joining());
+    }
+
+    public void tryNumber() throws NotEnoughDigitsException {
+        StringBuilder resultBuilder = new StringBuilder();
+
+        GameResult gameResult = calculateResult();
+        if (gameResult.isSuccess()) {
+            resultBuilder.append("You won! Secret number is ")
+                    .append(gameResult.getSecretNumber())
+                    .append(". Attempts: ")
+                    .append(gameResult.getAttemptBullsAndCowsList().size())
+                    .append("<br/> Try to guess new one!");
+        } else {
+            resultBuilder.append("Previous tries: <br/>");
+
+            int tryCounter = 1;
+            for (String attempt : gameResult.getAttemptBullsAndCowsList()) {
+                resultBuilder.append("[")
+                        .append(tryCounter++)
+                        .append("] ")
+                        .append(attempt)
+                        .append("<br/>");
+            }
+        }
+
+        result =  resultBuilder.toString();
+    }
+
+    public String getResult() {
+        return result;
     }
 }
