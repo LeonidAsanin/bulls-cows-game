@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 public class GameService {
     private final LinkedList<Integer> CURRENT_NUMBER;
     private final LinkedList<Integer> SECRET_NUMBER;
-    private final List<String> attemptBullsAndCowsList;
+    private final List<String> attemptAndBullsCowsList;
     private final UserRepository userRepository;
     private final long userId;
 
@@ -25,8 +25,9 @@ public class GameService {
 
     public GameService(UserRepository userRepository) {
         this.userRepository = userRepository;
+
         CURRENT_NUMBER = new LinkedList<>();
-        attemptBullsAndCowsList = new LinkedList<>();
+        attemptAndBullsCowsList = new LinkedList<>();
         SECRET_NUMBER = new LinkedList<>();
 
         userId = ((User) SecurityContextHolder
@@ -79,7 +80,7 @@ public class GameService {
             }
         }
 
-        attemptBullsAndCowsList.add(
+        attemptAndBullsCowsList.add(
                 CURRENT_NUMBER.stream()
                         .map(String::valueOf)
                         .collect(Collectors.joining())
@@ -89,23 +90,19 @@ public class GameService {
         GameResult gameResult = new GameResult(
                 bulls == 4,
                 getSecretNumber(),
-                new ArrayList<>(attemptBullsAndCowsList)
+                new ArrayList<>(attemptAndBullsCowsList)
         );
 
         if (bulls == 4) {
             generateNewSecretNumber();
             int gameCount = userRepository.getGameCountByUserId(userId);
             double averageAttemptNumberToWin = userRepository.getAverageAttemptNumberToWinByUserId(userId);
-            System.out.println("averageAttemptNumberToWin (before): " + averageAttemptNumberToWin);
-            averageAttemptNumberToWin = (gameCount * averageAttemptNumberToWin + attemptBullsAndCowsList.size()) / (gameCount + 1);
-            System.out.println("gameCount: " + gameCount);
-            System.out.println("attemptBullsAndCowsList.size(): " + attemptBullsAndCowsList.size());
-            System.out.println("averageAttemptNumberToWin (after): " + averageAttemptNumberToWin);
+            averageAttemptNumberToWin = (gameCount * averageAttemptNumberToWin + attemptAndBullsCowsList.size()) / (gameCount + 1);
 
             userRepository.incrementGameCountByUserId(userId);
             userRepository.setAverageAttemptNumberToWinByUserId(userId, averageAttemptNumberToWin);
 
-            attemptBullsAndCowsList.clear();
+            attemptAndBullsCowsList.clear();
         }
 
         bulls = cows = 0;
