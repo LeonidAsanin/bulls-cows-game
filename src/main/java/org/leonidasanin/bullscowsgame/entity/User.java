@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Objects;
 
 @Entity
 @Table(name = "users")
@@ -93,5 +94,22 @@ public class User implements UserDetails {
 
     public void setAverageAttemptNumberToWin(int averageAttemptNumberToWin) {
         this.averageAttemptNumberToWin = averageAttemptNumberToWin;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return gameCount == user.gameCount
+                && Double.compare(user.averageAttemptNumberToWin, averageAttemptNumberToWin) == 0
+                && Objects.equals(id, user.id)
+                && Objects.equals(username, user.username)
+                && Objects.equals(password, user.password);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, username, password, gameCount, averageAttemptNumberToWin);
     }
 }

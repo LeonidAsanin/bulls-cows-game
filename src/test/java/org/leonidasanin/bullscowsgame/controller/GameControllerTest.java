@@ -33,28 +33,30 @@ class GameControllerTest {
 
     MockMvc mockMvc;
 
+    User user;
+
     @BeforeEach
     void setup() {
         mockMvc = MockMvcBuilders
                 .webAppContextSetup(context)
                 .apply(SecurityMockMvcConfigurers.springSecurity())
                 .build();
+
+        user = new User();
+        user.setId(0L);
+        user.setUsername("username");
+        user.setPassword("password");
     }
 
     @Test
     void getPage() throws Exception {
         //given
-        long userId = 0L;
-        User user = new User();
-        user.setId(userId);
-        user.setUsername("username");
-        user.setPassword("password");
-        String userNumber = "1234";
+       String userNumber = "1234";
         double averageAttemptNumberToWin = 10.2;
         String result = "result";
 
         //when
-        Mockito.when(userServiceMock.getAverageAttemptNumberToWinByUserId(userId))
+        Mockito.when(userServiceMock.getAverageAttemptNumberToWinByUserId(user.getId()))
                 .thenReturn(averageAttemptNumberToWin);
         Mockito.when(gameServiceMock.getNumber())
                 .thenReturn(userNumber);
@@ -81,14 +83,66 @@ class GameControllerTest {
     }
 
     @Test
-    void enterDigit() {
+    void enterDigit() throws Exception {
+        //given
+        int digit = 0;
+        String url = "/game/enter/" + digit;
+
+        //when
+        mockMvc.perform(
+                MockMvcRequestBuilders
+                        .post(url)
+                        .with(SecurityMockMvcRequestPostProcessors.csrf())
+                        .with(SecurityMockMvcRequestPostProcessors
+                                .authentication(new AuthenticationForTestOfControllers(user)))
+                )
+        //then
+                .andExpect(MockMvcResultMatchers.status().is3xxRedirection())
+                .andExpect(MockMvcResultMatchers.redirectedUrl("/game"))
+                .andExpect(SecurityMockMvcResultMatchers.authenticated());
+        Mockito.verify(gameServiceMock)
+                .addDigit(digit);
     }
 
     @Test
-    void deleteDigit() {
+    void deleteDigit() throws Exception {
+        //given
+        String url = "/game/delete";
+
+        //when
+        mockMvc.perform(
+                        MockMvcRequestBuilders
+                                .post(url)
+                                .with(SecurityMockMvcRequestPostProcessors.csrf())
+                                .with(SecurityMockMvcRequestPostProcessors
+                                        .authentication(new AuthenticationForTestOfControllers(user)))
+                )
+        //then
+                .andExpect(MockMvcResultMatchers.status().is3xxRedirection())
+                .andExpect(MockMvcResultMatchers.redirectedUrl("/game"))
+                .andExpect(SecurityMockMvcResultMatchers.authenticated());
+        Mockito.verify(gameServiceMock)
+                .deleteDigit();
     }
 
     @Test
-    void tryNumber() {
+    void tryNumber() throws Exception {
+        //given
+        String url = "/game/try";
+
+        //when
+        mockMvc.perform(
+                        MockMvcRequestBuilders
+                                .post(url)
+                                .with(SecurityMockMvcRequestPostProcessors.csrf())
+                                .with(SecurityMockMvcRequestPostProcessors
+                                        .authentication(new AuthenticationForTestOfControllers(user)))
+                )
+                //then
+                .andExpect(MockMvcResultMatchers.status().is3xxRedirection())
+                .andExpect(MockMvcResultMatchers.redirectedUrl("/game"))
+                .andExpect(SecurityMockMvcResultMatchers.authenticated());
+        Mockito.verify(gameServiceMock)
+                .tryNumber();
     }
 }
