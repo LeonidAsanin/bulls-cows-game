@@ -22,7 +22,6 @@ Classic "Bulls and Cows" game implemented as web-application.
 ### Test part of the application
 * Spring Boot Test (including JUnit 5 and Mockito)
 * Spring Security Test
-* H2 in-memory database
 
 ## Launch
 Project is building into a **.war** file for further deploying into
