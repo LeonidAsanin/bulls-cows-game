@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
+    <link rel="stylesheet" th:href="@{/style.css}" href="/../static/style.css"/>
 </head>
 <body>
 <header>
@@ -12,20 +13,28 @@
     <form method="post" th:action="@{/login}" th:object="${user}">
         <fieldset>
             <legend>Authorization</legend>
+            <br/>
+
             <div>
                 <label for="username">Username</label>
                 <input type="text" required id="username" th:field="*{username}"/>
             </div>
+            <br/>
+
             <div>
                 <label for="password">Password</label>
                 <input type="password" required id="password" th:field="*{password}"/>
             </div>
+            <br/>
+
             <button type="submit">Log in</button>
+            <br/>
         </fieldset>
 
         <div class="errorMessage" th:if="${error} != null" th:text="${error}" style="color:red">
             Login Error
         </div>
+        <br/>
     </form>
 
     <form id="button" th:action="@{/register}">

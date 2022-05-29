@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Bulls and Cows Game</title>
+    <link rel="stylesheet" th:href="@{/style.css}" href="/../static/style.css"/>
 </head>
 <body>
   <header>
@@ -57,8 +58,8 @@
               </p>
           </form>
       </div>
-      <div id="error">
-          <span th:text="${error}" style="color:red">Error placeholder</span>
+      <div id="error" class="errorMessage">
+          <span th:text="${error}">Error placeholder</span>
       </div>
       <div id="result">
           <p>

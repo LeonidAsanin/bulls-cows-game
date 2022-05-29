@@ -41,6 +41,7 @@ public class SecurityConfig {
         return httpSecurity
                 .authorizeRequests()
                     .antMatchers("/login", "/register").permitAll()
+                    .antMatchers("/style.css").permitAll()
                     .anyRequest().authenticated()
                 .and()
                 .formLogin()

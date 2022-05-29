@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Registration</title>
+    <link rel="stylesheet" th:href="@{/style.css}" href="/../static/style.css"/>
 </head>
 <body>
 <header>
@@ -12,24 +13,33 @@
     <form method="post" th:action="@{/register}">
         <fieldset>
             <legend>Registration</legend>
+            <br/>
+
             <div>
                 <label>Username</label>
                 <input type="text" id="username" required minlength="2" name="username" th:value="${username}"/>
             </div>
+            <br/>
+
             <div>
                 <label>Password</label>
                 <input type="password" id="password" required minlength="8" name="password"/>
             </div>
+            <br/>
+
             <div>
                 <label>Confirm Password</label>
                 <input type="password" id="passwordConfirmation" required minlength="8" name="passwordConfirmation"/>
             </div>
+            <br/>
+
             <button type="submit">Register</button>
         </fieldset>
 
         <div class="errorMessage" th:if="${error} != null" th:text="${error}" style="color:red">
             Registration Error
         </div>
+        <br/>
     </form>
 
     <form id="button" th:action="@{/login}">
