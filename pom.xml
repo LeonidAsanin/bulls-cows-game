@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>org.leonidasanin</groupId>
 	<artifactId>bulls-cows-game</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<packaging>war</packaging>
 	<name>Bulls and Cows Game</name>
 	<description>Test project for Open-Code</description>
