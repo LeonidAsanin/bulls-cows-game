@@ -4,6 +4,12 @@ import org.leonidasanin.bullscowsgame.entity.User;
 import org.leonidasanin.bullscowsgame.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
+/**
+ * Service for managing user's data.
+ *
+ * @since 1.0.0
+ * @author Leonid Asanin
+ */
 @Service
 public class UserService {
     private final UserRepository userRepository;

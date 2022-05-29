@@ -11,6 +11,12 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.annotation.SessionScope;
 
 
+/**
+ * Controller to manage requests and responds for game.html page.
+ *
+ * @since 1.0.0
+ * @author Leonid Asanin
+ */
 @Controller
 @SessionScope
 @RequestMapping("/game")

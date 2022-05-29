@@ -10,6 +10,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+/**
+ * Controller that implements registration logic.
+ *
+ * @since 1.0.0
+ * @author Leonid Asanin
+ */
 @Controller
 @RequestMapping("/register")
 public class RegistrationController {

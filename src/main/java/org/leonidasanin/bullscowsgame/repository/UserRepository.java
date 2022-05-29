@@ -8,6 +8,13 @@ import org.springframework.data.jpa.repository.Query;
 import javax.transaction.Transactional;
 import java.util.Optional;
 
+/**
+ * Interface for further implementing by Spring framework at runtime
+ * that is in charge of User data managing.
+ *
+ * @since 1.0.0
+ * @author Leonid Asanin
+ */
 public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findByUsername(String username);
 

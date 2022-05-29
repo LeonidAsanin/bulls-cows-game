@@ -2,6 +2,12 @@ package org.leonidasanin.bullscowsgame.model;
 
 import java.util.List;
 
+/**
+ * Record representing result of the given game attempt.
+ *
+ * @since 1.0.0
+ * @author Leonid Asanin
+ */
 public class GameResult {
     private final boolean success;
     private final String secretNumber;

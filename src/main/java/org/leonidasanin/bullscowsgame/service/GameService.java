@@ -11,6 +11,12 @@ import org.springframework.web.context.annotation.SessionScope;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * Service for managing user's game.
+ *
+ * @since 1.0.0
+ * @author Leonid Asanin
+ */
 @Service
 @SessionScope
 public class GameService {

@@ -9,6 +9,12 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Objects;
 
+/**
+ * User entity able to be persisted and retrieved back for getting security access and intrinsic user's information.
+ *
+ * @since 1.0.0
+ * @author Leonid Asanin
+ */
 @Entity
 @Table(name = "users")
 public class User implements UserDetails {

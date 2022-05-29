@@ -7,6 +7,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+/**
+ * Controller that gives custom handling of "get" http-method request to "/login".
+ *
+ * @since 1.0.0
+ * @author Leonid Asanin
+ */
 @Controller
 @RequestMapping("/login")
 public class LoginController {

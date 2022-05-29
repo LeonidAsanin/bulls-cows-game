@@ -13,6 +13,13 @@ import org.springframework.security.web.SecurityFilterChain;
 
 import java.util.Optional;
 
+/**
+ * Security configuration that adds BCryptPasswordEncoder and UserDetailsService as beans and
+ * sets access limitations for unauthenticated users along with login/logout settings.
+ *
+ * @since 1.0.0
+ * @author Leonid Asanin
+ */
 @Configuration
 public class SecurityConfig {
     @Bean
