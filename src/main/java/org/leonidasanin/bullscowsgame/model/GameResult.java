@@ -4,10 +4,10 @@ import java.util.List;
 
 public class GameResult {
     private final boolean success;
-    private final int secretNumber;
+    private final String secretNumber;
     private final List<String> attemptBullsAndCowsList;
 
-    public GameResult(boolean success, int secretNumber, List<String> attemptBullsAndCowsList) {
+    public GameResult(boolean success, String secretNumber, List<String> attemptBullsAndCowsList) {
         this.success = success;
         this.secretNumber = secretNumber;
         this.attemptBullsAndCowsList = attemptBullsAndCowsList;
@@ -17,7 +17,7 @@ public class GameResult {
         return success;
     }
 
-    public int getSecretNumber() {
+    public String getSecretNumber() {
         return secretNumber;
     }
 

@@ -53,14 +53,6 @@ public class GameService {
         System.out.println("SECRET_NUMBER" + SECRET_NUMBER);
     }
 
-    private int getSecretNumber() {
-        return Integer.parseInt(
-                SECRET_NUMBER.stream()
-                        .map(String::valueOf)
-                        .collect(Collectors.joining())
-        );
-    }
-
     private GameResult calculateResult() throws NotEnoughDigitsException {
         if (CURRENT_NUMBER.size() < 4) throw new NotEnoughDigitsException();
 
@@ -68,8 +60,9 @@ public class GameService {
             if (SECRET_NUMBER.contains(CURRENT_NUMBER.get(i))) {
                 if (SECRET_NUMBER.get(i).equals(CURRENT_NUMBER.get(i))) {
                     bulls++;
+                } else {
+                    cows++;
                 }
-                cows++;
             }
         }
 
@@ -116,6 +109,26 @@ public class GameService {
         return CURRENT_NUMBER.stream()
                 .map(String::valueOf)
                 .collect(Collectors.joining());
+    }
+
+    public String getSecretNumber() {
+        return SECRET_NUMBER.stream()
+                .map(String::valueOf)
+                .collect(Collectors.joining());
+    }
+
+    public void setSecretNumber(LinkedList<Integer> secretNumber) throws NumberFormatException {
+        Set<Integer> digitSet = new HashSet<>(secretNumber);
+        if (digitSet.size() != 4) throw new NumberFormatException();
+        for (int digit : digitSet) {
+            if (digit < 0 || digit > 9) throw new NumberFormatException();
+        }
+
+        SECRET_NUMBER.clear();
+
+        for (int digit : secretNumber) {
+            SECRET_NUMBER.addLast(digit);
+        }
     }
 
     public void tryNumber() throws NotEnoughDigitsException {
